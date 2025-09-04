@@ -102,10 +102,13 @@ def exe5(leds, sw):
 
     @always_comb
     def comb():
-        led[0].next = sw[0]
-        led[1].next = sw[0] & sw[1]
-        led[2].next = ~ led[1].next
-        led[3].next = sw[0]^sw[1]
+        led0 = sw[0]
+        leds[1].next = sw[0] & sw[1]
+        leds[2].next = not leds[1]
+        leds[3].next = sw[0]^sw[1]
+        for i in range(4, 10):
+            leds[i].next = True
+
         
 
     return instances()
